@@ -1,0 +1,273 @@
+﻿@{
+    ViewBag.Title = "Login Page";
+    Layout = "~/Views/Shared/_LayoutPage1.cshtml";
+}
+
+
+<style>
+    body {
+        background-color: #F5F5F6;
+        font-size: 1.6rem;
+        font-family: "Open Sans", sans-serif;
+        color: #2b3e51;
+        width:100%;
+    }
+
+    h2 {
+        width:80%;
+        text-align: center;
+        color: dodgerblue;
+        align-items: center;
+        margin: 10% 0px 0px 10%;
+        text-align: center;
+        line-height: 1.5em;
+        text-overflow: ellipsis;
+    }
+
+    p {
+        position: relative;
+    }
+
+   
+    #login-form-wrap {
+        background-color: #fff;
+        width: 50%;
+        margin: 30px auto;
+        position:relative;
+        text-align: center;
+        padding: 20px 0 0 0;
+        border-radius: 4px;
+        box-shadow: 0px 30px 50px 0px rgba(0, 0, 0, 0.2);
+        border: 2px solid #c2c2c2;
+    }
+
+    #login-form {
+       
+        align-items: center;
+        text-align: center;
+    }
+
+    input {
+        display: block;
+        box-sizing: border-box;
+        width: 100%;
+        outline: none;
+        height: 60px;
+        line-height: 60px;
+        border-radius: 4px;
+    }
+
+        input[type="email"],
+        input[type="password"] {
+            width: 100%;
+            padding: 0 0 0 10px;
+            margin: 0;
+            color: #8a8b8e;
+            border: 1px solid #c2c0ca;
+            font-style: normal;
+            font-size: 16px;
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+            position: relative;
+            display: inline-block;
+            background: none;
+        }
+
+            input[type="email"]:focus,
+            input[type="password"]:focus {
+                border-color: #3ca9e2;
+            }
+
+                input[type="email"]:focus:invalid,
+                input[type="password"]:focus:invalid {
+                    color: #cc1e2b;
+                    border-color: #cc1e2b;
+                }
+
+            input[type="email"]:valid ~ .validation,
+            input[type="password"]:valid ~ .validation {
+                display: block;
+                border-color: #0C0;
+            }
+
+                input[type="email"]:valid ~ .validation span,
+                input[type="password"]:valid ~ .validation span {
+                    background: #0C0;
+                    position: absolute;
+                    border-radius: 6px;
+                }
+
+                    input[type="email"]:valid ~ .validation span:first-child,
+                    input[type="password"]:valid ~ .validation span:first-child {
+                        top: 30px;
+                        left: 14px;
+                        width: 20px;
+                        height: 3px;
+                        -webkit-transform: rotate(-45deg);
+                        transform: rotate(-45deg);
+                    }
+
+                    input[type="email"]:valid ~ .validation span:last-child,
+                    input[type="password"]:valid ~ .validation span:last-child {
+                        top: 35px;
+                        left: 8px;
+                        width: 11px;
+                        height: 3px;
+                        -webkit-transform: rotate(45deg);
+                        transform: rotate(45deg);
+                    }
+
+    .validation {
+        display: none;
+        position: absolute;
+        content: " ";
+        height: 60px;
+        width: 30px;
+        right: 15px;
+        top: 0px;
+    }
+
+    input[type="submit"] {
+        border: none;
+        display: block;
+        background-color: #3ca9e2;
+        color: #fff;
+        font-weight: bold;
+        cursor: pointer;
+        -webkit-transition: all 0.2s ease;
+        transition: all 0.2s ease;
+        font-size: 18px;
+        position: relative;
+        display: inline-block;
+        cursor: pointer;
+        text-align: center;
+    }
+
+        input[type="submit"]:hover {
+            background-color: #329dd5;
+            -webkit-transition: all 0.2s ease;
+            transition: all 0.2s ease;
+        }
+
+
+    .img-responsive {
+        margin-bottom: 10px; /* SIMPLY SET THIS PROPERTY AS MUCH AS YOU WANT. This changes the space below box1 */
+        display: block;
+    }
+
+    .column {
+        display: block;
+        padding: 5px;
+        text-align: justify;
+        margin-top: 10px; /* OR ADD THIS LINE AND SET YOUR PROPER SPACE as the space above box2 */
+    }
+
+    ::placeholder { /* Chrome, Firefox, Opera, Safari 10.1+ */
+        color: black;
+        opacity: 1; /* Firefox */
+    }
+</style>
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+  
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+
+
+</head>
+<body>
+    <div class="center-block">
+        <div id="login-form-wrap">
+            <div class="img-responsive" style="text-align:center;align-items:center;">
+                <img src="~/assets/logo1.png" style="width:200px;height:150px;"/>
+                @*</div><div class="row" style="">*@
+                <h2>
+                    Count and Conveyor Management System
+                </h2>
+            </div>
+            <div class="column">
+                <form id="login-form" name="myform" method="post" onsubmit="return false">
+                    <p>
+                        <input type="email" id="username" name="username" placeholder="Email Address">
+                    <p>
+                        <input type="password" id="password" name="pwd" placeholder="Password">
+                    </p>
+                    <p>
+                        @*<input type="submit" id="login" value="Login" onclick='window.location = "@Url.Action("Card", "CardController")";' />*@
+                        <input type='submit' value='Sign in' onclick="validate()" />
+                    </p>
+                    <p style="color:red;" id="invalid">
+                        Invalid Credentails
+                    </p>
+                </form>
+
+                <div class="form-floating my-3" style="text-align: center; align-items: center;">
+                    <p class="mb-0 text-muted">&copy; 2021–2022</p>
+                    <p class="mb-0text-muted">* Please do not use your IOCL password here</p>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>
+
+@section scripts
+    {
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+    <script>
+
+        var weburl = '@System.Configuration.ConfigurationManager.AppSettings["URL"]';
+        document.getElementById("invalid").style.display = "none";
+
+    function validate() {
+    var username = document.getElementById("username").value;
+    var password = document.getElementById("password").value;
+    if (username == "" && password == "") {
+    alert("Please enter the username and password");
+    }
+    else if (password == "") {
+    alert("Please enter the password")
+    return;
+    }
+    else if (username == "") {
+    alert("Please enter username")
+    return;
+    }
+    else {
+        document.getElementById("invalid").style.display = "none";
+
+    Login(username,password)
+    }
+    }
+
+    function Login(username,password) {
+
+
+
+        let url = weburl + "api/LoginController/GetLoginDetails/" + username + "/" + password;
+    axios.post(url).then
+        (data => {
+            if (data.data == 1) {
+                window.location = "@Url.Action("Card", "Home")";
+            }
+            else {
+                document.getElementById("invalid").style.display = "block";
+            }
+
+    }).catch(err => alert(err))
+    }
+
+
+
+    </script>
+
+}
